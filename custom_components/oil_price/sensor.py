@@ -110,8 +110,10 @@ class OilPriceHintSensor(Entity):
         soup = BeautifulSoup(text, "lxml")
         try:
             hint_section = soup.select_one("#youjiaCont > div:nth-of-type(2)")
+            print(hint_section)
             if hint_section:
                 self._state = hint_section.text.strip()
+                print(self._state)
                 self._update_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         except Exception as e:
             _LOGGER.error(f"Error parsing hint data: {e}")
